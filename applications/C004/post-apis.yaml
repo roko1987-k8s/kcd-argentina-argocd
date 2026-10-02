@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: post-apis
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/roko1987-k8s/kcd-argentina-apps.git
+    targetRevision: main
+    path: C004/post-apis
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: post-apis
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
