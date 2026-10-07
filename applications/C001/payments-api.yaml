@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: c001
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/roko1987-k8s/kcd-argentina-apps.git
+    targetRevision: main
+    path: C001/payments-api
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: c001
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
