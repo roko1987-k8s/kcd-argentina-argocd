@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: c002
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/roko1987-k8s/kcd-argentina-apps.git
+    targetRevision: main
+    path: C002/ux-pagos-change
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: c002
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
